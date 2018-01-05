@@ -1,45 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-        id="com.example.hello"
+        id="ga.oshimin.cordova.service"
         version="0.7.0">
 
-  <name>Hello</name>
+  <name>Javascript service</name>
 
   <engines>
     <engine name="cordova" version=">=3.4.0"/>
   </engines>
-
-  <asset src="www/hello.js" target="js/hello.js"/>
-
-  <js-module src="www/hello.js" name="hello">
-    <clobbers target="hello" />
+  
+  <asset src="cordovaService/utils.js" target="cordovaService/utils.js"/>
+  <asset src="cordovaService/jsonr.js" target="cordovaService/json.js"/>
+  <asset src="cordovaService/notification.js" target="cordovaService/notification.js"/>
+  <asset src="cordovaService/http.js" target="cordovaService/http.js"/>
+  <asset src="cordovaService/console.js" target="cordovaService/console.js"/>
+  <asset src="cordovaService/app.js" target="cordovaService/app.js"/>
+  <asset src="cordovaService/db.js" target="cordovaService/db.js"/>
+  <asset src="cordovaService/socket.js" target="cordovaService/socket.js"/>
+  
+  <js-module src="www/ga.oshimin.cordova.service.js" name="cordovaService">
+    <clobbers target="cordova.service" />
   </js-module>
 
   <platform name="android">
-
     <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="Hello">
-        <param name="android-package" value="com.example.plugin.Hello"/>
+      <feature name="cordovaService">
+        <param name="android-package" value="ga.oshimin.cordova.CordovaService"/>
       </feature>
     </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+        <service android:enabled="true" android:name="ga.oshimin.cordova.Worker">
+            <intent-filter>
+                <action android:name="ga.oshimin.cordova.Worker"/> 
+            </intent-filter>
+        </service>
+        <receiver android:name="ga.oshimin.cordova.NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="ga.oshimin.cordova.BootReceiver">
+            <intent-filter>     
+                <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+            </intent-filter>
+        </receiver>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+        <uses-permission android:name="android.permission.INTERNET" />
+    </config-file>
+    <!-- --> 
+    <resource-file src="res/drawable-xxxhdpi/cordova_service_def_action.png" target="res/drawable-xxxhdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-xxhdpi/cordova_service_def_action.png" target="res/drawable-xxhdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-xxhdpi/cordova_service_def_action.png" target="res/drawable-xxhdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-xhdpi/cordova_service_def_action.png" target="res/drawable-xhdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-xhdpi/cordova_service_def_action.png" target="res/drawable-xhdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-hdpi/cordova_service_def_action.png" target="res/drawable-hdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-hdpi/cordova_service_def_action.png" target="res/drawable-hdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-mdpi/cordova_service_def_action.png" target="res/drawable-mdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-mdpi/cordova_service_def_action.png" target="res/drawable-mdpi/cordova_service_def_action.png" />
+    <resource-file src="res/drawable-ldpi/cordova_service_def_action.png" target="res/drawable-ldpi/cordova_service_def_action.png" />
+    <!-- -->
+    <source-file src="src/android/CordovaService.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/Worker.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/BootReceiver.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/NetworkChangeReceiver.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/JSEngine.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/JSObject.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/AssetUtil.java" target-dir="src/ga/oshimin/cordova/"/>
+    <source-file src="src/android/Iface.java" target-dir="src/ga/oshimin/cordova/"/>
 
-    <source-file src="src/android/Hello.java" target-dir="src/com/example/plugin/"/>
-  </platform>
-
-  <platform name="ios">
+    <source-file src="src/android/modules/AppModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/ConsoleModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/HttpModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/SocketModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/ToastModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/TimerModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/NotificationModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/SocketIOClient.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/TCPClient.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/SSEClient.java" target-dir="src/ga/oshimin/cordova/module/"/>
+    <source-file src="src/android/modules/FileModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
     
-    <config-file target="config.xml" parent="/widget">
-      <feature name="Hello">
-        <param name="ios-package" value="HWPHello" />
-      </feature>
-    </config-file>
-
-    <header-file src="src/ios/HWPHello.h" target-dir="HelloPlugin"/>
-    <source-file src="src/ios/HWPHello.m" target-dir="HelloPlugin"/>
+    <lib-file src="src/android/libs/js.jar" />
+    <lib-file src="src/android/libs/commons-io.jar" />
+    <lib-file src="src/android/libs/okhttp.jar" />
+    <lib-file src="src/android/libs/okio.jar" />
+    <lib-file src="src/android/libs/okhttp-ws.jar" />
+    <lib-file src="src/android/libs/engine.io-client.jar" />
+    <lib-file src="src/android/libs/socket.io-client.jar" />
+    <lib-file src="src/android/libs/android-support-v4.jar" />
   </platform>
-
-  <platform name="wp7">
-    <source-file src="src/wp7/Hello.cs"/>
-  </platform>
-
 </plugin>
