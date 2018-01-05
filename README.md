@@ -4,7 +4,7 @@ This plugin allow to run js in background.
 
 # TODO
 ### Modules
-
+```
 [√]     app : Application tweaks
 			- [√] void sms(string msg,string to) // launch a messagerie apps for send sms
 			- [√] void dial(string to) // launch a telephonie apps for call
@@ -116,9 +116,11 @@ This plugin allow to run js in background.
                 /!\ | for add and update object,    |
                     | for save you need call save() |
                     +-------------------------------+
+```
 
 ### Functions
 
+```
 [√]    	Timer : setTimeout, setInterval(), setImmediate
 				clearTimeout,clearInterval,clearImmediate
 
@@ -127,9 +129,10 @@ This plugin allow to run js in background.
 		var console = require('console'); // load the module console
 		/!\ IMPORTANT /!\
 		Circular require() return undefined
-
+```
 ### Cordova Bridge
 
+```
 [√]    	onMessage : fn(Any message) // call when onMessage is called
 		 	** Usage **
     		onMessage = function(msg){
@@ -143,9 +146,11 @@ This plugin allow to run js in background.
 [√]    	postMessage(Any message) // call for send a message to cordova
     		** Usage **
     		postMessage("today is "+(new Date()));
+```
 
 ### Network Monitor
 
+```
 [√]    	online : fn(type) // call when online is detectect
 		 	** Usage **
     		online = function(type){
@@ -157,3 +162,4 @@ This plugin allow to run js in background.
     		offline = function(){
     			notification.toast("Network Status : offline")
     		}
+```
