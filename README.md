@@ -2,7 +2,87 @@
 
 This plugin allow to run js in background.
 
+# USAGE
+
+## Installing
+
+### Cordova
+
+`$ cordova plugin add cordova-js-service`
+
+### PhoneGap
+
+`$ phonegap plugin add cordova-js-service`
+
+### PhoneGap Build
+
+Edit config.xml to install the plugin for PhoneGap Build.
+
+```xml
+<gap:plugin name="cordova-js-service" source="npm" />
+```
+
+## Define the service
+
+Edit config.xml and add the relative path of the service (the root is www folder).
+
+```xml
+<preference name="js-service" value="background.js" />
+```
+
+### The background service
+
+the value of *js-service* mean that the service is located in `www/background.js`, this is a sample service.
+
+```js
+var notification = require('notification'); // import notification module
+notification.toast("Js service successfull start");
+
+onMessage = function(msg){
+    switch(msg.cmd || msg || 'ping'){
+        case 'add':
+            postMessage((msg.a||0) + (msg.b||0)); // make a + b and send to cordova
+            break;
+        case 'toast':
+            notification.toast(msg.data);
+            break;
+        case 'ping':
+            postMessage("pong"); // send data to cordova
+    }
+}
+// monitor the network
+online = function(type){
+    notification.toast("Network Status : "+type)
+}
+offline = function(){
+    notification.toast("Network Status : offline")
+}
+```
+### Cordova side
+
+In a js file Eg. `index.js`
+
+```js
+cordova.service.onMessage(function(data){
+    console.log("cordova.service Message", data);
+    cordova.service.postMessage({
+        cmd : "toast",
+        data : data
+    })
+});
+// you can pass any serializable data
+cordova.service.postMessage({
+    cmd : "add",
+    a : 5,
+    b : 3
+});
+setTimeout(function(){
+   cordova.service.postMessage("ping"); 
+})
+``` 
+
 # TODO
+
 ### Modules
 ```
 [√]     app : Application tweaks
@@ -124,7 +204,7 @@ This plugin allow to run js in background.
 [√]    	Timer : setTimeout, setInterval(), setImmediate
                 clearTimeout,clearInterval,clearImmediate
 
-[√]		Any require(string moduleNameOrJsRelativePathName) // import a module name or a js file (the path must be relative to the current file)
+[√]		Any require(string moduleNameOrJsRelativeFilePathName) // import a module name or a js file (the path must be relative to the current file)
         ** Usage **
         var console = require('console'); // load the module console
         /!\ IMPORTANT /!\

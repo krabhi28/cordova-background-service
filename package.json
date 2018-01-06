@@ -1,5 +1,5 @@
 {
-  "name": "js-service",
+  "name": "cordova-js-service",
   "version": "0.7.0",
   "description": "Cordova Javascript Service",
   "scripts": {
@@ -29,12 +29,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/don/cordova-plugin-hello.git"
+    "url": "git+https://github.com/badlee/js-service.git"
   },
   "author": "BADINGA ULRICH",
   "license": "PRIVATE",
   "bugs": {
-    "url": "https://github.com/don/cordova-plugin-hello/issues"
+    "url": "https://github.com/badlee/js-service/issues"
   },
-  "homepage": "https://github.com/don/cordova-plugin-hello#readme"
+  "homepage": "https://github.com/badlee/js-service#readme"
 }
