@@ -192,7 +192,7 @@ setTimeout(function(){
                     - [√] Element clone() // clone element on database and return the new Element
                     - [√] Element remove() // remove element on database 
                         +-------------------------------+
-                    .  | The accessors can be used     |
+                     .  | The accessors can be used     |
                     /!\ | for add and update object,    |
                         | for save you need call save() |
                         +-------------------------------+
