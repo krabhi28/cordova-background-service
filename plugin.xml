@@ -85,13 +85,14 @@
     <source-file src="src/android/modules/SSEClient.java" target-dir="src/ga/oshimin/cordova/module/"/>
     <source-file src="src/android/modules/FileModule.java" target-dir="src/ga/oshimin/cordova/module/"/>
     
-    <lib-file src="src/android/libs/js.jar" />
-    <lib-file src="src/android/libs/commons-io.jar" />
-    <lib-file src="src/android/libs/okhttp.jar" />
-    <lib-file src="src/android/libs/okio.jar" />
-    <lib-file src="src/android/libs/okhttp-ws.jar" />
-    <lib-file src="src/android/libs/engine.io-client.jar" />
-    <lib-file src="src/android/libs/socket.io-client.jar" />
-    <lib-file src="src/android/libs/android-support-v4.jar" />
+          
+    <framework src="com.android.support:support-v4:24.1.1+" />
+<framework src="rhino.wso2:js-v4:1.7.0.R4.wso2v1+" />
+<framework src="commons-io:commons-io:2.5+" />
+<framework src="'com.squareup.okhttp3:okhttp:3.9.1+" />
+<framework src="com.squareup.okio:okio:1.12.0+" />
+<framework src="com.squareup.okhttp3:okhttp-ws:3.4.2+" />
+<framework src="io.socket:engine.io-client:1.0.0+" />
+<framework src="io.socket:socket.io-client:1.0.0+" />
   </platform>
 </plugin>
