@@ -87,7 +87,7 @@
     
           
     <framework src="com.android.support:support-v4:24.1.1+" />
-<framework src="rhino.wso2:js-v4:1.7.0.R4.wso2v1+" />
+<framework src="org.mozilla:rhino:1.7.8+" />
 <framework src="commons-io:commons-io:2.5+" />
 <framework src="'com.squareup.okhttp3:okhttp:3.9.1+" />
 <framework src="com.squareup.okio:okio:1.12.0+" />
