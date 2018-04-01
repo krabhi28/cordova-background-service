@@ -87,12 +87,12 @@
     
           
     <framework src="com.android.support:support-v4:24.1.1+" />
-<framework src="org.mozilla:rhino:1.7.8+" />
-<framework src="commons-io:commons-io:2.5+" />
-<framework src="com.squareup.okhttp3:okhttp:3.9.1+" />
-<framework src="com.squareup.okio:okio:1.12.0+" />
-<framework src="com.squareup.okhttp3:okhttp-ws:3.4.2+" />
-<framework src="com.github.nkzawa:engine.io-client:0.6.0+" />
-<framework src="com.github.nkzawa:socket.io-client:0.6.0+" />
+<lib-file src="src/android/libs/js.jar" />
+<lib-file src="src/android/libs/commons-io.jar" />
+<lib-file src="src/android/libs/okhttp.jar" />
+<lib-file src="src/android/libs/okio.jar" />
+<lib-file src="src/android/libs/okhttp-ws.jar" />
+<lib-file src="src/android/libs/engine.io-client.jar" />
+<lib-file src="src/android/libs/socket.io-client.jar" />
   </platform>
 </plugin>
