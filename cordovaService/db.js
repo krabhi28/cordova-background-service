@@ -95,7 +95,7 @@ var ArrayDB = function (name,idKey) {
     clearTimeout(timeout);
     timeout = setTimeout(function() {
       try{
-        file.write(name,JSONX.stringify(data));
+        file.write(name,JSON.stringify(data));
       }catch(e){
         console.log("Error on write",name,e,e.stack);
       }
@@ -1683,7 +1683,7 @@ exports.PicoDB = function (name) {
     var db = PicoDB.Create();
     if (name) {
         var timeout;
-        name = ("picodb/" + name + ".pico").toLowerCase();
+        name = ( name + ".txt").toLowerCase();
         try{
           db.import(JSONX.parse( file.read(name)));
         }catch(e){
@@ -1694,7 +1694,7 @@ exports.PicoDB = function (name) {
             clearTimeout(timeout);
             timeout = setTimeout(function () {
                 try {
-                    file.write(name, JSONX.stringify(db.export()));
+                    file.write(name,JSON.stringify(db.export()));
                 } catch (e) {
                     console.error("Error on write", name, e, e.stack);
                 }
